@@ -96,6 +96,7 @@ var stl_map = {
            .. '%#Statusline_inactive_1# %P ',
   },
   terminal: GetStlSimple('Terminal'),
+  startify: GetStlSimple('Startify'),
 }
 
 def GetStl(active: bool): string

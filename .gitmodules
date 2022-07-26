@@ -1,3 +1,6 @@
 [submodule "pack/colors/opt/gruvbox"]
 	path = pack/colors/opt/gruvbox
 	url = https://github.com/morhetz/gruvbox
+[submodule "pack/plugins/start/startify"]
+	path = pack/plugins/start/startify
+	url = https://github.com/mhinz/vim-startify

@@ -24,3 +24,19 @@ set termguicolors
 set background=dark
 colorscheme gruvbox
 
+g:startify_fortune_use_unicode = 1
+
+g:banner = [
+  '  __    _______   __    __   _____ ______    _____',
+  '  ) )  ( (_   _)  \ \  / /  (_   _|_  __ \  / ___/',
+  ' ( (    ) )| |    () \/ ()    | |   ) ) \ \( (__  ',
+  '  \ \  / / | |    / _  _ \    | |  ( (   ) )) __) ',
+  '   \ \/ /  | |   / / \/ \ \   | |   ) )  ) | (    ',
+  '    \  /  _| |__/_/      \_\ _| |__/ /__/ / \ \___',
+  '     \/  /_____(/          \)_____(______/   \____\',
+  ''
+]
+
+g:startify_custom_header = 'startify#pad(g:banner)'
+g:startify_custom_footer = 'startify#pad(startify#fortune#boxed())'
+
