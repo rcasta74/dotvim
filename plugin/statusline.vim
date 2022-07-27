@@ -97,6 +97,7 @@ var stl_map = {
   },
   terminal: GetStlSimple('Terminal'),
   startify: GetStlSimple('Startify'),
+  netrw: GetStlSimple('Explorer'),
 }
 
 def GetStl(active: bool): string

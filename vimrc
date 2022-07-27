@@ -25,7 +25,6 @@ set background=dark
 colorscheme gruvbox
 
 g:startify_fortune_use_unicode = 1
-
 g:banner = [
   '  __    _______   __    __   _____ ______    _____',
   '  ) )  ( (_   _)  \ \  / /  (_   _|_  __ \  / ___/',
@@ -36,7 +35,10 @@ g:banner = [
   '     \/  /_____(/          \)_____(______/   \____\',
   ''
 ]
-
 g:startify_custom_header = 'startify#pad(g:banner)'
 g:startify_custom_footer = 'startify#pad(startify#fortune#boxed())'
 
+g:netrw_banner = 0
+g:netrw_liststyle = 3
+g:netrw_winsize = -35
+nmap <unique> <F3> <Cmd>Lexplore!<CR>
