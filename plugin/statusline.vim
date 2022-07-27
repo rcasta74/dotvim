@@ -41,8 +41,24 @@ def g:StatuslineMode(): string
   return get(mode_map, mode(), mode_map['n'])[0]
 enddef
 
+def g:StatuslineGitHunk(sep: string): string
+  var [a,m,r] = g:GitGutterGetHunkSummary()
+  var stl = ''
+  if (a + m + r) > 0
+    stl ..= sep
+         .. (a > 0 ? '+' .. a .. ' ' : '')
+         .. (m > 0 ? '~' .. m .. ' ' : '')
+         .. (r > 0 ? '-' .. r .. ' ' : '')
+   endif
+  return stl
+enddef
+
 
 def ChangeMode()
+  # skip if popup
+  if win_gettype() == 'popup'
+    return
+  endif
   if v:event.old_mode[0] == v:event.new_mode[0]
     return
   endif
@@ -70,16 +86,21 @@ var stl_map = {
   default: {
     active: '%#Statusline_active_0_bold# %{g:StatuslineMode()} %{winnr()} %#Statusline_active_0_1#' .. sepLeft
          .. '%{%&modified?"%#Statusline_active_1_mod#":(&readonly?"%#Statusline_active_1_ro#":"%#Statusline_active_1#")%} %t %#Statusline_active_1_2#' .. sepLeft
-         .. '%#Statusline_active_2#%{%!empty(&filetype)?" %{g:StatuslineFileType()} ":""%}%#Statusline_active_2_3#' .. sepLeft
-         .. '%=%#Statusline_active_2_3#' .. sepRight
-         .. '%#Statusline_active_2# %{&encoding} | %{g:StatuslineFileFormat()} %#Statusline_active_1_2#' .. sepRight
-         .. '%#Statusline_active_1# %3.l:%3.v %#Statusline_active_1_1#' .. sepSubRight
-         .. '%#Statusline_active_1# %P ',
+         .. '%{%g:FugitiveIsGitDir() '
+            .. '? "%#Statusline_active_2# " .. g:FugitiveHead() .. " " .. g:StatuslineGitHunk("%#Statusline_active_2_2#' .. sepSubLeft .. ' %#Statusline_active_2#") '
+            .. ': ""'
+         .. '%}%#Statusline_active_2_3#' .. sepLeft .. '%=%#Statusline_active_2_3#' .. sepRight .. '%#Statusline_active_2#'
+         .. '%{%!empty(&filetype)'
+            .. '?" %{g:StatuslineFileType()} |"'
+            .. ':""'
+         .. '%} %{&encoding} | %{g:StatuslineFileFormat()} %#Statusline_active_1_2#' .. sepRight
+         .. '%#Statusline_active_1# %3.l:%3.v %#Statusline_active_1_1#' .. sepSubRight .. '%#Statusline_active_1# %P ',
     inactive: '%#Statusline_inactive_0_bold# %{winnr()} %#Statusline_inactive_0_1#' .. sepLeft
            .. '%#Statusline_inactive_1# %t %#Statusline_inactive_1_1#' .. sepSubLeft
            .. '%{%!empty(&filetype)?"%#Statusline_inactive_1# %{g:StatuslineFileType()} %#Statusline_active_1_1#' .. sepSubLeft .. '":""%}'
+           .. '%#Statusline_inactive_1#%{%g:FugitiveIsGitDir()?" %{g:FugitiveHead()} ":""%}%#Statusline_inactive_1_1#' .. sepSubLeft
            .. '%=%#Statusline_inactive_1_1#' .. sepSubRight
-           .. '%#Statusline_inactive_1# %{&encoding} | %{&fileformat} %#Statusline_inactive_1_1#' .. sepSubRight
+           .. '%#Statusline_inactive_1#%{!empty(&filetype)?" " .. &filetype .. " |":""} %{&encoding} | %{&fileformat} %#Statusline_inactive_1_1#' .. sepSubRight
            .. '%#Statusline_inactive_1# %P ',
   },
   help: {
@@ -112,7 +133,11 @@ enddef
 
 augroup statusline
   autocmd!
-  autocmd BufWinEnter,WinEnter,TerminalWinOpen * setwinvar(winnr(), '&statusline', GetStl(true))
+  autocmd BufWinEnter,WinEnter,TerminalWinOpen * {
+      if (win_gettype() != 'popup')
+        setwinvar(winnr(), '&statusline', GetStl(true))
+      endif
+    }
   # Sometime filetype is set after entering the window
   autocmd FileType * setwinvar(winnr(), '&statusline', GetStl(true))
   autocmd WinLeave * setwinvar(winnr(), '&statusline', GetStl(false))

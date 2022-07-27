@@ -60,6 +60,7 @@ cnoreabbrev H vert bo h
 
 set background=dark
 colorscheme gruvbox
+$BAT_THEME = 'gruvbox-dark'
 
 g:startify_fortune_use_unicode = 1
 g:banner = [
