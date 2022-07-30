@@ -80,3 +80,6 @@ g:netrw_banner = 0
 g:netrw_liststyle = 3
 g:netrw_winsize = -35
 nmap <unique> <F3> <Cmd>Lexplore!<CR>
+
+packadd fugitive
+#packadd gina
