@@ -86,7 +86,7 @@ def g:StatuslineStatus(sep: string): string
   if !empty(msg)
     msg ..= " " .. sep
   endif
-  return msg .. get(g:, "coc_status", "")
+  return msg .. '%{get(g:, "coc_status", "")}'
 enddef
 
 
@@ -126,7 +126,8 @@ var stl_map = {
             .. '? "%#Statusline_active_2# ' .. icons['branch'] .. ' " .. g:StatuslineGitHead() .. " " .. g:StatuslineGitHunk("%#Statusline_active_2_2#' .. sepSubLeft .. ' %#Statusline_active_2#") '
             .. ': ""'
          .. '%}%#Statusline_active_2_3#' .. sepLeft
-         .. '%= %#Statusline_active_2_3#' .. sepRight
+         .. '%#Statusline_active_3#%{%g:StatuslineStatus("%#Statusline_active_3_3#' .. sepSubLeft .. ' %#Statusline_active_3#")%}'
+         .. '%=%{get(b:,"coc_current_function", "")} %#Statusline_active_2_3#' .. sepRight
          .. '%#Statusline_active_2#%{%!empty(&filetype)'
             .. '?" %{g:StatuslineFileType()} |"'
             .. ':""'
@@ -155,6 +156,7 @@ var stl_map = {
   terminal: GetStlSimple('Terminal'),
   startify: GetStlSimple('Startify'),
   netrw: GetStlSimple('Explorer'),
+  OUTLINE: GetStlSimple('Outline'),
 }
 
 def g:GetStatusline(): string
@@ -167,6 +169,10 @@ def g:GetStatusline(): string
   if stl_map->has_key(prop)
     return stl_map->get(prop)->get(status)
   endif
+  prop = getwinvar(g:statusline_winid, 'cocViewId')
+  if stl_map->has_key(prop)
+    return stl_map->get(prop)->get(status)
+  endif
   return stl_map->get('default')->get(status)
 enddef
 
@@ -176,5 +182,6 @@ augroup statusline
   autocmd!
   # Different color for different mode
   autocmd ModeChanged * ChangeMode()
+  autocmd User CocStatusChange,CocDiagnosticChange redrawstatus
 augroup END
 

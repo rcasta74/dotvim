@@ -20,6 +20,7 @@ set fillchars=eob:\ ,vert:│,fold:·
 set autoindent
 set autoread
 set display=lastline
+set cursorline
 
 set tabstop=4
 set shiftwidth=4
@@ -61,6 +62,7 @@ cnoreabbrev H vert bo h
 set background=dark
 colorscheme gruvbox
 $BAT_THEME = 'gruvbox-dark'
+$FZF_PREVIEW_PREVIEW_BAT_THEME = 'gruvbox-dark'
 
 g:startify_fortune_use_unicode = 1
 g:banner = [

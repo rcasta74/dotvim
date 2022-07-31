@@ -31,3 +31,7 @@
 [submodule "pack/plugins/start/csv"]
 	path = pack/plugins/start/csv
 	url = https://github.com/chrisbra/csv.vim
+[submodule "pack/plugins/start/coc"]
+	path = pack/plugins/start/coc
+	url = https://github.com/neoclide/coc.nvim
+	branch = release
