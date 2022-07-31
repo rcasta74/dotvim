@@ -71,7 +71,10 @@ export def AddStatuslineHighlight()
   AddHighlight('Statusline_active_2', fg4, bg2, false)
   AddHighlight('Statusline_active_2_2', bg3, bg2, false)
   AddHighlight('Statusline_active_2_3', bg2, bg3, false)
-  AddHighlight('Statusline_active_3', bg1, bg3, false)
-  AddHighlight('Statusline_active_3_3', bg2, bg3, false)
+  AddHighlight('Statusline_active_3', fg4, bg3, false)
+  AddHighlight('Statusline_active_3_3', bg4, bg3, false)
+  AddHighlight('User1', red, bg3, false)
+  AddHighlight('User2', yellow, bg3, false)
+  AddHighlight('User3', aqua, bg3, false)
 enddef
 
