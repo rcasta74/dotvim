@@ -91,3 +91,8 @@ $FZF_DEFAULT_OPTS = ""
 
 packadd fugitive
 #packadd gina
+
+
+g:xml_syntax_folding = 1
+au FileType xml setlocal foldmethod=syntax
+

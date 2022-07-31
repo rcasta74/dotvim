@@ -19,3 +19,15 @@
 [submodule "pack/plugins/opt/gina"]
 	path = pack/plugins/opt/gina
 	url = https://github.com/lambdalisue/gina.vim
+[submodule "pack/plugins/start/indentLine"]
+	path = pack/plugins/start/indentLine
+	url = https://github.com/Yggdroot/indentLine
+[submodule "pack/plugins/start/nerdcommenter"]
+	path = pack/plugins/start/nerdcommenter
+	url = https://github.com/preservim/nerdcommenter
+[submodule "pack/plugins/start/matchup"]
+	path = pack/plugins/start/matchup
+	url = https://github.com/andymass/vim-matchup
+[submodule "pack/plugins/start/csv"]
+	path = pack/plugins/start/csv
+	url = https://github.com/chrisbra/csv.vim
