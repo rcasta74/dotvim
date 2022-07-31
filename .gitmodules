@@ -31,3 +31,6 @@
 [submodule "pack/plugins/start/csv"]
 	path = pack/plugins/start/csv
 	url = https://github.com/chrisbra/csv.vim
+[submodule "pack/plugins/opt/lsp"]
+	path = pack/plugins/opt/lsp
+	url = https://github.com/yegappan/lsp

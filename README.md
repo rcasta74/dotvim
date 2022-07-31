@@ -1,6 +1,7 @@
 ### Requirements
 
 - [fzf](https://github.com/junegunn/fzf/releases)
+- [jdtls](https://download.eclipse.org/jdtls/snapshots/)
 
 
 ### Optionals
