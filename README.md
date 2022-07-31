@@ -1,6 +1,7 @@
 ### Requirements
 
 - [fzf](https://github.com/junegunn/fzf/releases)
+- [nodejs](https://nodejs.org/en/download)
 
 
 ### Optionals
