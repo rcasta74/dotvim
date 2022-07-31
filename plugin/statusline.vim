@@ -30,6 +30,14 @@ var icons = {
 }
 
 
+def g:StatuslineFileName(): string
+  var name = expand("%")
+  if name[: 5] == "jdt://"
+    name = substitute(name, "?=.*", "", "")
+  endif
+  return fnamemodify(name, ":t")
+enddef
+
 def g:StatuslineFileFormat(): string
   return get(icons, &fileformat, &fileformat)
 enddef
@@ -121,7 +129,7 @@ enddef
 var stl_map = {
   default: {
     active: '%#Statusline_active_0_bold# %{g:StatuslineMode()} %{winnr()} %#Statusline_active_0_1#' .. sepLeft
-         .. '%{%&modified?"%#Statusline_active_1_mod#":(&readonly?"%#Statusline_active_1_ro#":"%#Statusline_active_1#")%} %t %#Statusline_active_1_2#' .. sepLeft
+         .. '%{%&modified?"%#Statusline_active_1_mod#":(&readonly?"%#Statusline_active_1_ro#":"%#Statusline_active_1#")%} %{StatuslineFileName()} %#Statusline_active_1_2#' .. sepLeft
          .. '%{%g:StatuslineIsGitDir() '
             .. '? "%#Statusline_active_2# ' .. icons['branch'] .. ' " .. g:StatuslineGitHead() .. " " .. g:StatuslineGitHunk("%#Statusline_active_2_2#' .. sepSubLeft .. ' %#Statusline_active_2#") '
             .. ': ""'
@@ -134,7 +142,7 @@ var stl_map = {
          .. '%} %{&encoding} | %{g:StatuslineFileFormat()} %#Statusline_active_1_2#' .. sepRight
          .. '%#Statusline_active_1# %3.l:%3.v %#Statusline_active_1_1#' .. sepSubRight .. '%#Statusline_active_1# %P ',
     inactive: '%#Statusline_inactive_0_bold# %{winnr()} %#Statusline_inactive_0_1#' .. sepLeft
-           .. '%#Statusline_inactive_1# %t %#Statusline_inactive_1_1#' .. sepSubLeft
+           .. '%#Statusline_inactive_1# %{StatuslineFileName()} %#Statusline_inactive_1_1#' .. sepSubLeft
            .. '%#Statusline_inactive_1#%{%g:StatuslineIsGitDir()?" %{g:StatuslineGitHead()} ":""%}%#Statusline_inactive_1_1#' .. sepSubLeft
            .. '%=%#Statusline_inactive_1_1#' .. sepSubRight
            .. '%#Statusline_inactive_1#%{!empty(&filetype)?" " .. &filetype .. " |":""} %{&encoding} | %{&fileformat} %#Statusline_inactive_1_1#' .. sepSubRight

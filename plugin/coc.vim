@@ -9,6 +9,10 @@ endif
 g:coc_global_extensions = [
   'coc-json',
   'coc-fzf-preview',
+  'coc-snippets',
+  'coc-java',
+  'coc-java-lombok',
+  'https://github.com/dgileadi/vscode-java-decompiler',
 ]
 
 call coc#config('outline.splitCommand', 'topleft 30vs')
