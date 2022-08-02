@@ -26,10 +26,18 @@ set shiftwidth=4
 set expandtab
 
 set wildmenu
+set wildmode=longest:full
+set wildoptions=pum
 set timeout timeoutlen=1000 ttimeoutlen=100
 
-set nowritebackup
+set writebackup
 set undofile
+
+set mouse=
+
+set dir=~/.cache/vim/swap
+set backupdir=~/.cache/vim/backup
+set undodir=~/.cache/vim/undo
 
 augroup vimStartup
   au!
@@ -62,6 +70,7 @@ set background=dark
 colorscheme gruvbox
 $BAT_THEME = 'gruvbox-dark'
 
+g:startify_change_to_dir = 0
 g:startify_fortune_use_unicode = 1
 g:banner = [
   '  __    _______   __    __   _____ ______    _____',
