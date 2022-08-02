@@ -28,8 +28,12 @@ set expandtab
 set wildmenu
 set timeout timeoutlen=1000 ttimeoutlen=100
 
-set nowritebackup
+set writebackup
 set undofile
+
+set dir=~/.cache/vim/swap
+set backupdir=~/.cache/vim/backup
+set undodir=~/.cache/vim/undo
 
 augroup vimStartup
   au!
