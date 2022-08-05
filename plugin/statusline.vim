@@ -94,7 +94,7 @@ def g:StatuslineStatus(sep: string): string
   if !empty(msg)
     msg ..= " " .. sep
   endif
-  return msg .. '%{get(g:, "coc_status", "")}'
+  return msg .. '%<%{get(g:, "coc_status", "")}'
 enddef
 
 
@@ -190,6 +190,6 @@ augroup statusline
   autocmd!
   # Different color for different mode
   autocmd ModeChanged * ChangeMode()
-  autocmd User CocStatusChange,CocDiagnosticChange redrawstatus
+  autocmd User CocStatusChange,CocDiagnosticChange if mode() == 'n' | redrawstatus | endif
 augroup END
 
