@@ -26,6 +26,8 @@ set shiftwidth=4
 set expandtab
 
 set wildmenu
+set wildmode=longest:full
+set wildoptions=pum
 set timeout timeoutlen=1000 ttimeoutlen=100
 
 set writebackup
