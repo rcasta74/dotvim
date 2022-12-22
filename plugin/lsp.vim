@@ -24,6 +24,8 @@ lspServers += [
 g:LspOptionsSet({
   #autoHighlight: true,
   noNewlineInCompletion: true,
+  snippetSupport: true,
+  usePopupInCodeAction: true,
 })
 
 g:LspAddServer(lspServers)

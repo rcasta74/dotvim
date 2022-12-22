@@ -102,6 +102,10 @@ packadd fugitive
 #packadd gina
 packadd lsp
 
+packadd vsnip
+packadd vsnip-integ
+g:vsnip_snippet_dir = expand("~/.vim/snip")
+
 g:xml_syntax_folding = 1
 au FileType xml setlocal foldmethod=syntax
 
