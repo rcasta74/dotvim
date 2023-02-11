@@ -26,7 +26,43 @@ var icons = {
   dos:  "\ue70f", # 
   unix: "\ue712", # 
   mac:  "\ue711", # 
+
   branch: "\ue725", # 
+
+  sh: "\ufcb5", # ﲵ
+  c: "\ufb70", # ﭰ
+  cpp: "\ufb71", # ﭱ
+  java: "\uf4e4", # 
+  #java: "\ue738", # 
+  #java: "\ue256", # 
+  javascript: "\ue60c", # 
+  #javascript: "\ue74e", # 
+  json: "\ue60b", # 
+  #json: "\uf668", # 
+  #json: "\ueb0f", # 
+  vim: "\ue7c5", # 
+  #vim: "\ue62b", # 
+  html: "\ue60e", # 
+  #xml: "\ue618", # 
+  #xml: "\uf44f", # 
+  #xml: "\uf673", # 
+  xml: "\ufabf", # 謹
+  #xml: "\uf121", # 
+  #markdown: "\uf60f", # 
+  markdown: "\ueb1d", # 
+  python: "\uf81f", #  
+  #python: "\ue606", #  
+  #python: "\uf820", # 
+  # \ue628  
+  # \ue615  
+  # \ue614  
+
+  ascii: "\uf825", # 
+  # ascii: "\u24b6", # Ⓐ
+  'utf-8': "\uf8ba", # 
+  #'utf-8': "\u2467", # ⑧
+  #'utf-8': "\u247b", # ⑻
+  #'utf-8': "\u249c", # ⒜
 }
 
 
@@ -36,6 +72,10 @@ enddef
 
 def g:StatuslineFileType(): string
   return get(icons, &filetype, &filetype)
+enddef
+
+def g:StatuslineEncoding(): string
+  return get(icons, &encoding, &encoding)
 enddef
 
 def g:StatuslineMode(): string
@@ -104,10 +144,10 @@ def ChangeMode()
   exec printf('hi! link Statusline_active_0_1 Statusline_%s_0_1', mode)
 enddef
 
-var sepLeft = "\ue0b0"
-var sepRight = "\ue0b2"
-var sepSubLeft = "\ue0b1"
-var sepSubRight = "\ue0b3"
+var sepLeft = "\ue0b0" # 
+var sepRight = "\ue0b2" # 
+var sepSubLeft = "\ue0b1" # 
+var sepSubRight = "\ue0b3" # 
 
 def GetStlSimple(pattern: string): dict<string>
   return {
@@ -130,7 +170,7 @@ var stl_map = {
          .. '%#Statusline_active_2#%{%!empty(&filetype)'
             .. '?" %{g:StatuslineFileType()} |"'
             .. ':""'
-         .. '%} %{&encoding} | %{g:StatuslineFileFormat()} %#Statusline_active_1_2#' .. sepRight
+         .. '%} %{g:StatuslineEncoding()} | %{g:StatuslineFileFormat()} %#Statusline_active_1_2#' .. sepRight
          .. '%#Statusline_active_1# %3.l:%3.v %#Statusline_active_1_1#' .. sepSubRight .. '%#Statusline_active_1# %P ',
     inactive: '%#Statusline_inactive_0_bold# %{winnr()} %#Statusline_inactive_0_1#' .. sepLeft
            .. '%#Statusline_inactive_1# %t %#Statusline_inactive_1_1#' .. sepSubLeft
