@@ -40,3 +40,6 @@
 [submodule "pack/plugins/opt/vsnip-integ"]
 	path = pack/plugins/opt/vsnip-integ
 	url = https://github.com/hrsh7th/vim-vsnip-integ
+[submodule "pack/plugins/start/vimspector"]
+	path = pack/plugins/start/vimspector
+	url = https://github.com/puremourning/vimspector
