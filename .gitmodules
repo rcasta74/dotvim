@@ -31,8 +31,8 @@
 [submodule "pack/plugins/start/csv"]
 	path = pack/plugins/start/csv
 	url = https://github.com/chrisbra/csv.vim
-[submodule "pack/plugins/opt/lsp"]
-	path = pack/plugins/opt/lsp
+[submodule "pack/plugins/start/lsp"]
+	path = pack/plugins/start/lsp
 	url = https://github.com/yegappan/lsp
 [submodule "pack/plugins/opt/vsnip"]
 	path = pack/plugins/opt/vsnip

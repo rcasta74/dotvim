@@ -1,26 +1,5 @@
 vim9script
 
-var lspServers: list<dict<any>> = []
-
-# JAVA
-var java_args = [
-    '-configuration', $HOME .. '/.cache/jdtls/conf',
-    '-data', $HOME .. '/.cache/jdtls/data'
-  ]
-var java_lombok = globpath($HOME .. "/.cache/lsp/java", "**/lombok*.jar", v:false, v:true)
-if !java_lombok->empty()
-  java_args += [
-    '-javaagent:' .. java_lombok[0],
-  ]
-endif
-lspServers += [
-  {
-    'filetype': ['java', 'pom'],
-    'path': $HOME .. '/.local/jdtls/bin/jdtls',
-    'args': java_args
-  }
-]
-
 g:LspOptionsSet({
   #autoHighlight: true,
   noNewlineInCompletion: true,
@@ -28,7 +7,7 @@ g:LspOptionsSet({
   usePopupInCodeAction: true,
 })
 
-g:LspAddServer(lspServers)
+g:LspAddServer(g:MyLspServers)
 
 
 inoremap <expr> <Tab>   pumvisible() ? "\<C-n>" : "\<Tab>"
