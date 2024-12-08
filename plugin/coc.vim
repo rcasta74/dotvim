@@ -11,7 +11,8 @@ g:coc_global_extensions = [
   'coc-fzf-preview',
   'coc-snippets',
   'coc-java',
-  'coc-java-lombok',
+  'coc-sonarlint',
+  'coc-java-debug',
   'https://github.com/dgileadi/vscode-java-decompiler',
 ]
 

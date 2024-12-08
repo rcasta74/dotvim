@@ -36,3 +36,6 @@
 	path = pack/plugins/opt/coc
 	url = https://github.com/neoclide/coc.nvim
 	branch = release
+[submodule "pack/plugins/start/vimspector"]
+	path = pack/plugins/start/vimspector
+	url = https://github.com/puremourning/vimspector
